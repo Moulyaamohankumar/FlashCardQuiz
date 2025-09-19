@@ -7,9 +7,10 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.app",
+  title: "Quiz Master - Multiplayer Quiz Game",
+  description:
+    "Challenge your friends in this exciting multiplayer quiz game with real-time scoring and interactive gameplay",
+  generator: "Next.js",
 }
 
 export default function RootLayout({
