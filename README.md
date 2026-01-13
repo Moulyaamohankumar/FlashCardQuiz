@@ -1,30 +1,129 @@
-# Quiz game development
+🎯 Real-Time Quiz Game
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+A real-time multiplayer quiz game built with Next.js and Supabase, where players can join live quiz rooms, answer questions simultaneously, and see scores update instantly.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/moulyaas-projects/v0-quiz-game-development)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/71ITYHvqZKK)
+🚀 Features
 
-## Overview
+🔐 User authentication (Supabase Auth)
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+🧠 Real-time quiz questions & answers
 
-## Deployment
+👥 Multiplayer quiz rooms
 
-Your project is live at:
+⚡ Live score updates using Supabase Realtime
 
-**[https://vercel.com/moulyaas-projects/v0-quiz-game-development](https://vercel.com/moulyaas-projects/v0-quiz-game-development)**
+⏱ Timed questions
 
-## Build your app
+📊 Leaderboard
 
-Continue building your app on:
+📱 Responsive UI
 
-**[https://v0.app/chat/projects/71ITYHvqZKK](https://v0.app/chat/projects/71ITYHvqZKK)**
+🛠 Tech Stack
 
-## How It Works
+Frontend: Next.js (React, App Router)
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+Backend: Supabase
+
+PostgreSQL Database
+
+Realtime subscriptions
+
+Authentication
+
+Styling: Tailwind CSS (or your preferred CSS framework)
+
+📁 Project Structure
+.
+├── app/                # Next.js app router
+│   ├── page.tsx        # Home page
+│   ├── quiz/           # Quiz pages
+│   └── layout.tsx
+├── components/         # Reusable UI components
+├── lib/                # Supabase client & helpers
+├── public/             # Static assets
+├── styles/             # Global styles
+├── .env.local          # Environment variables
+└── README.md
+
+🔧 Environment Variables
+
+Create a .env.local file in the root directory:
+
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+🗄 Database Schema (Example)
+quizzes
+Column	Type
+id	uuid
+title	text
+created_at	timestamp
+questions
+Column	Type
+id	uuid
+quiz_id	uuid
+question	text
+options	json
+correct_answer	text
+players
+Column	Type
+id	uuid
+name	text
+score	integer
+quiz_id	uuid
+⚡ Real-Time Functionality
+
+Supabase Realtime is used to:
+
+Broadcast new questions
+
+Sync player answers
+
+Update scores live
+
+Notify players when the quiz ends
+
+Example subscription:
+
+supabase
+  .channel('quiz-room')
+  .on('postgres_changes', { event: '*', schema: 'public', table: 'players' }, payload => {
+    console.log(payload)
+  })
+  .subscribe()
+
+▶️ Getting Started
+1. Clone the repository
+git clone https://github.com/your-username/realtime-quiz-game.git
+cd realtime-quiz-game
+
+2. Install dependencies
+npm install
+
+3. Run the development server
+npm run dev
+
+
+Open http://localhost:3000
+ in your browser.
+
+🧪 Future Improvements
+
+🎙 Voice or video quiz modes
+
+🏆 Global rankings
+
+🎨 Custom quiz themes
+
+🤖 AI-generated questions
+
+📡 WebSocket fallback support
+
+🤝 Contributing
+
+Contributions are welcome!
+Feel free to open issues or submit pull requests.
+
+📄 License
+
+This project is licensed under the MIT License.
